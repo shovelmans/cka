@@ -5,8 +5,13 @@ metadata:
   namespace: argocd
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd.lab.local
+      secretName: argocd-tls-secret
   rules:
     - host: argocd.lab.local
       http:

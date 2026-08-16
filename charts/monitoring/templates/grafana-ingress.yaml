@@ -5,8 +5,13 @@ metadata:
   namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - grafana.lab.local
+      secretName: grafana-tls-secret
   rules:
     - host: grafana.lab.local
       http:

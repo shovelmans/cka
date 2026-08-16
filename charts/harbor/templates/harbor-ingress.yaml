@@ -5,8 +5,13 @@ metadata:
   namespace: harbor
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - harbor.lab.local
+      secretName: harbor-tls-secret
   rules:
     - host: harbor.lab.local
       http:

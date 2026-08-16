@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-tls
+  namespace: monitoring
+spec:
+  secretName: grafana-tls-secret
+  dnsNames:
+    - grafana.lab.local
+  issuerRef:
+    name: lab-ca-issuer
+    kind: ClusterIssuer

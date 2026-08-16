@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: alertmanager-tls
+  namespace: monitoring
+spec:
+  secretName: alertmanager-tls-secret
+  dnsNames:
+    - alertmanager.lab.local
+  issuerRef:
+    name: lab-ca-issuer
+    kind: ClusterIssuer

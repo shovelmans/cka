@@ -5,8 +5,13 @@ metadata:
   namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - alertmanager.lab.local
+      secretName: alertmanager-tls-secret
   rules:
     - host: alertmanager.lab.local
       http:
