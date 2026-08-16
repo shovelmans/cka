@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: kubernetesui/dashboard
+  tag: "v2.7.0"
+
+service:
+  type: NodePort
+  port: 443
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
