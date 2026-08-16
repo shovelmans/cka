@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-harbor-notification-policy
+  namespace: monitoring
+  labels:
+    grafana_alert: "1"
+data:
+  policies.yaml: |
+    apiVersion: 1
+    policies:
+      - orgId: 1
+        receiver: email-harbor
+        group_by: ["alertname", "namespace"]
+        routes:
+          - receiver: email-harbor
+            object_matchers:
+              - ["namespace", "=", "harbor"]
+            group_wait: 30s
+            group_interval: 5m
+            repeat_interval: 20m
+            continue: false

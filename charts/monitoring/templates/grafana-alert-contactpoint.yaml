@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-harbor-contactpoint
+  namespace: monitoring
+  labels:
+    grafana_alert: "1"
+data:
+  contactpoints.yaml: |
+    apiVersion: 1
+    contactPoints:
+      - orgId: 1
+        name: email-harbor
+        receivers:
+          - uid: email-harbor-receiver
+            type: email
+            settings:
+              addresses: vjorgem95@gmail.com
+              singleEmail: true

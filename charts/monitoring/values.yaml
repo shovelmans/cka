@@ -4,6 +4,21 @@ kube-prometheus-stack:
       type: NodePort
       nodePort: 30300
     adminPassword: "admin12345"
+    sidecar:
+      alerts:
+        enabled: true
+        label: grafana_alert
+        labelValue: "1"
+        searchNamespace: ALL
+    grafana.ini:
+      smtp:
+        enabled: true
+        host: smtp.gmail.com:587
+        user: vjorgem95@gmail.com
+        from_address: vjorgem95@gmail.com
+        from_name: Grafana Harbor Alerts
+        startTLS_policy: MandatoryStartTLS
+    envFromSecret: smtp-gmail-credentials
 
   prometheus:
     service:
