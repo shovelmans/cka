@@ -18,13 +18,3 @@ spec:
                 name: monitoring-grafana
                 port:
                   number: 80
-    - host: grafana.159.223.3.171.nip.io
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: monitoring-grafana
-                port:
-                  number: 80
