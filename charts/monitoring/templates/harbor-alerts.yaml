@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: harbor-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: harbor.rules
+      rules:
+        - alert: HarborPodNotReady
+          expr: |
+            kube_pod_status_ready{namespace="harbor", condition="true"} == 0
+          for: 2m
+          labels:
+            severity: critical
+            namespace: harbor
+          annotations:
+            summary: {{ `"Pod {{ $labels.pod }} en harbor no está Ready"` }}
+            description: {{ `"El pod {{ $labels.pod }} en el namespace harbor lleva más de 2 minutos sin estar Ready."` }}
+
+        - alert: HarborPodCrashLooping
+          expr: |
+            increase(kube_pod_container_status_restarts_total{namespace="harbor"}[10m]) > 3
+          for: 2m
+          labels:
+            severity: critical
+            namespace: harbor
+          annotations:
+            summary: {{ `"Pod {{ $labels.pod }} en harbor está en CrashLoopBackOff"` }}
+            description: {{ `"El contenedor {{ $labels.container }} del pod {{ $labels.pod }} ha reiniciado más de 3 veces en 10 minutos."` }}
