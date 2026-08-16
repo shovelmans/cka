@@ -1,0 +1,17 @@
+replicaCount: 2
+
+image:
+  repository: httpd
+  tag: "2.4-alpine"
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

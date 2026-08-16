@@ -1,0 +1,6 @@
+apiVersion: v2
+name: apache-demo
+description: Chart de lab CKA para desplegar Apache HTTP Server
+type: application
+version: 0.1.0
+appVersion: "2.4.65"
