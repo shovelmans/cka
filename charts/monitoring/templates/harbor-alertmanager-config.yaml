@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: harbor-email-alerts
+  namespace: monitoring
+spec:
+  route:
+    receiver: email-harbor
+    groupBy: ["alertname", "namespace"]
+    groupWait: 30s
+    groupInterval: 5m
+    repeatInterval: 20m
+    matchers:
+      - name: namespace
+        value: harbor
+        matchType: "="
+  receivers:
+    - name: email-harbor
+      emailConfigs:
+        - to: vjorgem95@gmail.com
+          from: vjorgem95@gmail.com
+          smarthost: smtp.gmail.com:587
+          authUsername: vjorgem95@gmail.com
+          authPassword:
+            name: smtp-gmail-credentials
+            key: password
+          requireTLS: true
+          sendResolved: true
