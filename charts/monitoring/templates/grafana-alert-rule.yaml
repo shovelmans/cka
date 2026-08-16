@@ -24,7 +24,7 @@ data:
                   to: 0
                 datasourceUid: prometheus
                 model:
-                  expr: kube_pod_status_ready{namespace="harbor", condition="true"} == 0
+                  expr: sum(kube_pod_status_ready{namespace="harbor", condition="true"}) or vector(0)
                   instant: true
                   refId: A
               - refId: C
@@ -37,8 +37,8 @@ data:
                   expression: A
                   conditions:
                     - evaluator:
-                        type: gt
-                        params: [0]
+                        type: lt
+                        params: [1]
                   refId: C
             noDataState: Alerting
             execErrState: Alerting
@@ -48,4 +48,4 @@ data:
               namespace: harbor
             annotations:
               summary: "Pod en harbor no está Ready"
-              description: "Hay al menos un pod en el namespace harbor sin estar Ready desde hace más de 2 minutos."
+              description: "Hay 0 pods Ready en el namespace harbor desde hace más de 2 minutos (namespace caído o todos los pods no-Ready)."
