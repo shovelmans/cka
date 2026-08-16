@@ -40,7 +40,7 @@ data:
                         type: gt
                         params: [0]
                   refId: C
-            noDataState: OK
+            noDataState: Alerting
             execErrState: Alerting
             for: 2m
             labels:
