@@ -1,0 +1,10 @@
+apiVersion: v2
+name: monitoring
+description: Wrapper chart para kube-prometheus-stack (Prometheus + Grafana + Alertmanager) - lab CKA
+type: application
+version: 0.1.0
+appVersion: "v0.93.0"
+dependencies:
+  - name: kube-prometheus-stack
+    version: "88.3.0"
+    repository: https://prometheus-community.github.io/helm-charts
