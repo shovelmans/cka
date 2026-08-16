@@ -1,0 +1,16 @@
+rancher:
+  hostname: rancher.lab.local
+  replicas: 1
+  ingressClassName: nginx
+  bootstrapPassword: "Rancher12345"
+  ingress:
+    ingressClassName: nginx
+    tls:
+      source: secret
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
