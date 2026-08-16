@@ -2,7 +2,7 @@ rancher:
   hostname: rancher.lab.local
   replicas: 1
   ingressClassName: nginx
-  bootstrapPassword: "Rancher12345"
+  bootstrapPassword: ""
   ingress:
     ingressClassName: nginx
     tls:
