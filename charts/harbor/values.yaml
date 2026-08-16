@@ -1,0 +1,23 @@
+harbor:
+  expose:
+    type: nodePort
+    nodePort:
+      ports:
+        http:
+          port: 80
+          nodePort: 30002
+    tls:
+      enabled: false
+
+  externalURL: http://142.93.131.69:30002
+
+  harborAdminPassword: "Harbor12345"
+
+  persistence:
+    enabled: false
+
+  # componentes ligeros no imprescindibles en lab
+  trivy:
+    enabled: false
+  notary:
+    enabled: false
