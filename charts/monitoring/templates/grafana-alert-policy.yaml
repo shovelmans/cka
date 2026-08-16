@@ -10,10 +10,10 @@ data:
     apiVersion: 1
     policies:
       - orgId: 1
-        receiver: email-harbor
+        receiver: telegram-harbor
         group_by: ["alertname", "namespace"]
         routes:
-          - receiver: email-harbor
+          - receiver: telegram-harbor
             object_matchers:
               - ["namespace", "=", "harbor"]
             group_wait: 30s
