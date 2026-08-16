@@ -1,0 +1,14 @@
+ingress-nginx:
+  controller:
+    service:
+      type: NodePort
+      nodePorts:
+        http: 31080
+        https: 31443
+    resources:
+      requests:
+        cpu: 50m
+        memory: 90Mi
+      limits:
+        cpu: 200m
+        memory: 180Mi
