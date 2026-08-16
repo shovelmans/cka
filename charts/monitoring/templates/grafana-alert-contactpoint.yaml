@@ -10,10 +10,13 @@ data:
     apiVersion: 1
     contactPoints:
       - orgId: 1
-        name: email-harbor
+        name: telegram-harbor
         receivers:
-          - uid: email-harbor-receiver
-            type: email
+          - uid: telegram-harbor-receiver
+            type: telegram
             settings:
-              addresses: vjorgem95@gmail.com
-              singleEmail: true
+              bottoken: "8897845260:AAGmoaDV87xi4J6Ad8Aq5jAEjSyrhj6tIAw"
+              chatid: "6400347307"
+              message: |
+                {{ `{{ len .Alerts.Firing }}` }} alerta(s) en {{ `{{ .CommonLabels.namespace }}` }}
+                {{ `{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}` }}
