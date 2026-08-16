@@ -24,7 +24,10 @@ data:
                   to: 0
                 datasourceUid: prometheus
                 model:
-                  expr: sum(kube_pod_status_ready{namespace="harbor", condition="false"}) or vector(0)
+                  expr: |
+                    (sum(kube_pod_status_ready{namespace="harbor", condition="false"}) or vector(0))
+                    +
+                    (sum(kube_deployment_spec_replicas{namespace="harbor"} - kube_deployment_status_replicas_available{namespace="harbor"}) or vector(0))
                   instant: true
                   refId: A
               - refId: C
@@ -48,4 +51,4 @@ data:
               namespace: harbor
             annotations:
               summary: "Al menos un pod de harbor no está Ready"
-              description: "Hay uno o más pods en el namespace harbor sin estar Ready desde hace más de 2 minutos."
+              description: "Hay uno o más pods en el namespace harbor sin estar Ready, o réplicas faltantes de algún Deployment, desde hace más de 2 minutos."
