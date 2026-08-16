@@ -12,7 +12,7 @@ data:
       - orgId: 1
         name: harbor-namespace-alerts
         folder: Harbor
-        interval: 1m
+        interval: 10s
         rules:
           - uid: harbor-pod-not-ready
             title: HarborPodNotReady (Grafana)
