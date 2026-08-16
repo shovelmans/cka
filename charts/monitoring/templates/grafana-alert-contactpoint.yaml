@@ -14,9 +14,25 @@ data:
         receivers:
           - uid: telegram-harbor-receiver
             type: telegram
+            disableResolveMessage: false
             settings:
               bottoken: "8897845260:AAGmoaDV87xi4J6Ad8Aq5jAEjSyrhj6tIAw"
               chatid: "6400347307"
+              parse_mode: "HTML"
               message: |
-                {{ `{{ len .Alerts.Firing }}` }} alerta(s) en {{ `{{ .CommonLabels.namespace }}` }}
-                {{ `{{ range .Alerts }}{{ .Annotations.summary }}{{ end }}` }}
+                {{ `{{ if gt (len .Alerts.Firing) 0 }}🔴 <b>ALERTA ACTIVA</b> 🔴{{ else }}🟢 <b>RESUELTO</b> 🟢{{ end }}` }}
+
+                <b>Cluster:</b> CKA Lab
+                <b>Namespace:</b> {{ `{{ .CommonLabels.namespace }}` }}
+                <b>Severidad:</b> {{ `{{ .CommonLabels.severity }}` }}
+
+                {{ `{{ range .Alerts.Firing }}` }}
+                ⚠️ <b>{{ `{{ .Labels.alertname }}` }}</b>
+                {{ `{{ .Annotations.summary }}` }}
+                {{ `{{ .Annotations.description }}` }}
+                🕐 Desde: {{ `{{ .StartsAt.Format "15:04:05" }}` }}
+                {{ `{{ end }}` }}
+                {{ `{{ range .Alerts.Resolved }}` }}
+                ✅ <b>{{ `{{ .Labels.alertname }}` }}</b> — resuelto
+                🕐 Resuelto a las: {{ `{{ .EndsAt.Format "15:04:05" }}` }}
+                {{ `{{ end }}` }}
