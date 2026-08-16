@@ -45,7 +45,7 @@ data:
                   refId: C
             noDataState: OK
             execErrState: Alerting
-            for: 2m
+            for: 10s
             labels:
               severity: critical
               namespace: harbor
