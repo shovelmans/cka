@@ -9,7 +9,7 @@ harbor:
     tls:
       enabled: false
 
-  externalURL: http://142.93.131.69:30002
+  externalURL: http://159.223.3.171:30002
 
   harborAdminPassword: "Harbor12345"
 
