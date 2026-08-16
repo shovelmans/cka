@@ -1,6 +1,0 @@
-apiVersion: v2
-name: local-path-provisioner
-description: Chart propio de Rancher local-path-provisioner (lab CKA) - Storage dinamico basado en hostPath
-type: application
-version: 0.1.0
-appVersion: "0.0.31"
