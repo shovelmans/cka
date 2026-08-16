@@ -1,0 +1,27 @@
+## values.yaml - ArgoCD (lab CKA)
+global:
+  domain: argocd.local
+
+configs:
+  params:
+    server.insecure: true   # sin TLS propio, exposición vía NodePort en lab
+
+server:
+  replicas: 1
+  service:
+    type: NodePort
+
+controller:
+  replicas: 1
+
+repoServer:
+  replicas: 1
+
+applicationSet:
+  enabled: true
+
+redis:
+  enabled: true
+
+dex:
+  enabled: false   # no necesitamos SSO externo en el lab
